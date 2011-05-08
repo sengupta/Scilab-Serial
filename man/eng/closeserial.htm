@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>closeserial</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>Scilab Function  </center>
+<div align="right">Last update : 00/00/0002</div>
+<p><b>closeserial</b> - close the serial port</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>result = closeserial(h)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<tt><b>h</b></tt>
+       : string, Tcl handle to the serial port
+       </li>
+<li>
+<tt><b>result</b></tt>
+       : 0 if close is successful, -1 if unsuccessul
+       </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<dl><dd>
+<b></b><p>
+     Close the serial port channel. Wrapper to the Tcl command <tt><b>close</b></tt>.
+     </p>
+</dd></dl>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+   h=openserial(1,"9600,n,8,1")
+   closeserial(h)
+  </pre>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/openserial.htm"><tt><b>openserial</b></tt></a>,&nbsp;&nbsp;<a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/readserial.htm"><tt><b>readserial</b></tt></a>,&nbsp;&nbsp;<a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/writeserial.htm"><tt><b>writeserial</b></tt></a>,&nbsp;&nbsp;<a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/serialstatus.htm"><tt><b>serialstatus</b></tt></a>,&nbsp;&nbsp;</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd><b>Enrico Segre</b></dd></dl>
+<h3><font color="blue">Bibliography</font></h3>
+<b>TCL manual</b>:
+    <dd><li>
+<b><font color="maroon">close:</font></b>
+       http://www.tcl.tk/man/tcl8.4/TclCmd/close.htm</li></dd>
+</body>
+</html>

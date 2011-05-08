@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>openserial</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>Scilab Function  </center>
+<div align="right">Last update : 00/00/0002</div>
+<p><b>openserial</b> - open serial port</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>h = openserial(p,smode,translation,handshake,xchar,blocking,timeout)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<tt><b>p</b></tt>
+       : port number, or port device name.
+       
+       Numbers are mapped in the following standard way
+           <div align="center"><table border="2">
+<tr align="center">
+<td><tt><b>p</b></tt></td>
+<td><b>MSDOS</b></td>
+<td><b>Unix</b></td>
+</tr>
+<tr align="center">
+<td>1</td>
+<td>COM1:</td>
+<td>/dev/ttyS0</td>
+</tr>
+<tr align="center">
+<td>2</td>
+<td>COM2:</td>
+<td>/dev/ttyS1</td>
+</tr>
+<tr align="center">
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</table></div>
+       
+       If needed (e.g. on unix systems using different naming conventions), the
+       serial port device can be specified as a string instead.
+       If omitted, default is 1.
+       </li>
+<li>
+<tt><b>smode</b></tt>
+       : string, communication parameters, in the form 
+       <tt><b>"baud,parity,data_bits,stop_bits"</b></tt>
+</li>
+<li>
+<tt><b>translation</b></tt>
+       : string, either <tt><b>"auto"</b></tt>, <tt><b>"binary"</b></tt>,
+       <tt><b>"cr"</b></tt>, <tt><b>"crlf"</b></tt> or <tt><b>"lf"</b></tt>. Default is
+       <tt><b>"binary"</b></tt>.
+       </li>
+<li>
+<tt><b>handshake</b></tt>
+       : string, either <tt><b>"none"</b></tt>, <tt><b>"rtscts"</b></tt>,
+       <tt><b>"xonxoff"</b></tt> or <tt><b>"dtrdsr"</b></tt>
+</li>
+<li>
+<tt><b>xchar</b></tt>
+       : xon and xoff characters
+       </li>
+<li>
+<tt><b>timeout</b></tt>
+       : timeout for reading? msec
+       </li>
+<li>
+<tt><b>blocking</b></tt>
+       : boolean, blocking mode of the serial channel. If <tt><b>%t</b></tt>,
+       Scilab hangs until all the requested characters are read from or written
+       to the serial port. Default is <tt><b>%f</b></tt>.
+       </li>
+<li>
+<tt><b>h</b></tt>
+       : string, handle to the serial port file returned by TCL
+       </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<dl>
+<dd>
+<b></b><p>
+      Wrapper to the TCL commands <tt><b>open</b></tt> and <tt><b>fconfigure</b></tt>.
+      Parameters can be omitted or given with the named argument convention
+      (e.g., <tt><b>openserial(1,handshake="rtscts")</b></tt>)
+     </p>
+</dd>
+<dd>
+<b></b><p>
+     Serial port communication is supported (as of Tcl 8.4.11) only on Windows
+     and Unix platforms.
+     </p>
+<p>
+     Apparently, no port locking mechanism is implemented under my linux...
+     </p>
+</dd>
+</dl>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+   h=openserial(1,"9600,n,8,1")
+   writeserial(h,"#02"+ascii(13))
+   xpause(200000)
+   readserial(h)
+   closeserial(h)
+  </pre>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/closeserial.htm"><tt><b>closeserial</b></tt></a>,&nbsp;&nbsp;<a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/readserial.htm"><tt><b>readserial</b></tt></a>,&nbsp;&nbsp;<a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/writeserial.htm"><tt><b>writeserial</b></tt></a>,&nbsp;&nbsp;<a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/serialstatus.htm"><tt><b>serialstatus</b></tt></a>,&nbsp;&nbsp;</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd><b>Enrico Segre</b></dd></dl>
+<h3><font color="blue">Bibliography</font></h3>
+<b>TCL manual</b>:
+    <dd>
+<li>
+<b><font color="maroon">open:</font></b>
+       http://www.tcl.tk/man/tcl8.4/TclCmd/open.htm</li>
+<li>
+<b><font color="maroon">fconfigure:</font></b>
+       http://www.tcl.tk/man/tcl8.4/TclCmd/fconfigure.htm</li>
+</dd>
+</body>
+</html>

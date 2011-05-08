@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>readserial</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>3-Aug-2006</DATE>
+  <SHORT_DESCRIPTION name="readserial">read characters from serial port</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>buf = readserial(h [,n])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>h</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : string, Tcl handle to the serial port
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>n</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : number of characters to be read. If omitted, all the characters currently
+       in the input buffer are retrieved (<LINK>serialstatus</LINK> is used).
+       <P>
+       <BD>NB</BD>: if the input buffer contains less
+       than <VERB>n</VERB> characters and the <VERB>blocking</VERB> 
+       mode of <LINK>openserial</LINK> is true, <VERB>readserial</VERB> hangs until 
+       <VERB>n</VERB> are received (this can last forever).
+       </P>
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>buf</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : string retrieved from the serial port
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+     Read characters from the serial port
+     </P>
+     <P>
+      The <VERB>translation</VERB> setting of 
+      <LINK>openserial</LINK> can come in the way, affecting the number of characters
+      effectively read. If that is the case, omitting the parameter <VERB>n</VERB>
+      might be a bad idea, as scilab can hang. This would happen if the input
+      stream contains <VERB>CR</VERB> or <VERB>LF</VERB> characters which are
+      filtered out: in such cases <LINK>serialstatus</LINK> counts them, but
+      <LINK>readserial</LINK> does not see them and keeps wating (if the
+      <VERB>blocking</VERB> mode of <LINK>openserial</LINK> was true)
+      until the total number is received.</P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   h=openserial(1,"9600,n,8,1")
+   writeserial(h,"#02"+ascii(13))
+   readserial(h)
+   closeserial(h)
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>openserial</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>closeserial</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>writeserial</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>serialstatus</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Enrico Segre'>
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+  <BIBLIO>
+    <SP>
+    <BD>TCL manual</BD>:
+    <ITEMIZE>
+    <ITEM label="read:">
+       http://www.tcl.tk/man/tcl8.4/TclCmd/read.htm</ITEM>
+    </ITEMIZE>
+    </SP>
+  </BIBLIO>
+
+</MAN>

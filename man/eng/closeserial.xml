@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>closeserial</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>3-Aug-2006</DATE>
+  <SHORT_DESCRIPTION name="closeserial">close the serial port</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>result = closeserial(h)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>h</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : string, Tcl handle to the serial port
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>result</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : 0 if close is successful, -1 if unsuccessul
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+     Close the serial port channel. Wrapper to the Tcl command <VERB>close</VERB>.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   h=openserial(1,"9600,n,8,1")
+   closeserial(h)
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>openserial</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>readserial</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>writeserial</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>serialstatus</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Enrico Segre'>
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+  <BIBLIO>
+    <SP>
+    <BD>TCL manual</BD>:
+    <ITEMIZE>
+    <ITEM label="close:">
+       http://www.tcl.tk/man/tcl8.4/TclCmd/close.htm</ITEM>
+    </ITEMIZE>
+    </SP>
+  </BIBLIO>
+
+</MAN>

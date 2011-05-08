@@ -1,0 +1,5 @@
+readserial
+writeserial
+openserial
+serialstatus
+closeserial

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>openserial</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>3-Aug-2006</DATE>
+  <SHORT_DESCRIPTION name="openserial">open serial port</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>h = openserial(p,smode,translation,handshake,xchar,blocking,timeout)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>p</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : port number, or port device name.
+       
+       Numbers are mapped in the following standard way
+           <TABLE>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN><VERB>p</VERB></TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN><BD>MSDOS</BD></TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN><BD>Unix</BD></TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>1</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>COM1:</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>/dev/ttyS0</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>2</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>COM2:</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>/dev/ttyS1</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>...</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>...</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>...</TABLE_NEW_COLUMN>
+       </TABLE_NEW_ROW>
+      </TABLE>
+       
+       If needed (e.g. on unix systems using different naming conventions), the
+       serial port device can be specified as a string instead.
+       If omitted, default is 1.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>smode</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : string, communication parameters, in the form 
+       <VERB>"baud,parity,data_bits,stop_bits"</VERB>
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>translation</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : string, either <VERB>"auto"</VERB>, <VERB>"binary"</VERB>,
+       <VERB>"cr"</VERB>, <VERB>"crlf"</VERB> or <VERB>"lf"</VERB>. Default is
+       <VERB>"binary"</VERB>.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>handshake</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : string, either <VERB>"none"</VERB>, <VERB>"rtscts"</VERB>,
+       <VERB>"xonxoff"</VERB> or <VERB>"dtrdsr"</VERB>
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>xchar</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : xon and xoff characters
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>timeout</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : timeout for reading? msec
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>blocking</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : boolean, blocking mode of the serial channel. If <VERB>%t</VERB>,
+       Scilab hangs until all the requested characters are read from or written
+       to the serial port. Default is <VERB>%f</VERB>.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>h</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : string, handle to the serial port file returned by TCL
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      Wrapper to the TCL commands <VERB>open</VERB> and <VERB>fconfigure</VERB>.
+      Parameters can be omitted or given with the named argument convention
+      (e.g., <VERB>openserial(1,handshake="rtscts")</VERB>)
+     </P>
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+     <P>
+     Serial port communication is supported (as of Tcl 8.4.11) only on Windows
+     and Unix platforms.
+     </P>
+     <P>
+     Apparently, no port locking mechanism is implemented under my linux...
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   h=openserial(1,"9600,n,8,1")
+   writeserial(h,"#02"+ascii(13))
+   xpause(200000)
+   readserial(h)
+   closeserial(h)
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>closeserial</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>readserial</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>writeserial</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>serialstatus</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Enrico Segre'>
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+  <BIBLIO>
+    <SP>
+    <BD>TCL manual</BD>:
+    <ITEMIZE>
+    <ITEM label="open:">
+       http://www.tcl.tk/man/tcl8.4/TclCmd/open.htm</ITEM>
+    <ITEM label="fconfigure:">
+       http://www.tcl.tk/man/tcl8.4/TclCmd/fconfigure.htm</ITEM>
+    </ITEMIZE>
+    </SP>
+  </BIBLIO>
+
+</MAN>

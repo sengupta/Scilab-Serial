@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>readserial</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>Scilab Function  </center>
+<div align="right">Last update : 00/00/0002</div>
+<p><b>readserial</b> - read characters from serial port</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>buf = readserial(h [,n])</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<tt><b>h</b></tt>
+       : string, Tcl handle to the serial port
+       </li>
+<li>
+<tt><b>n</b></tt>
+       : number of characters to be read. If omitted, all the characters currently
+       in the input buffer are retrieved (<a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/serialstatus.htm"><tt><b>serialstatus</b></tt></a> is used).
+       <p><b>NB</b>: if the input buffer contains less
+       than <tt><b>n</b></tt> characters and the <tt><b>blocking</b></tt> 
+       mode of <a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/openserial.htm"><tt><b>openserial</b></tt></a> is true, <tt><b>readserial</b></tt> hangs until 
+       <tt><b>n</b></tt> are received (this can last forever).
+       </p>
+</li>
+<li>
+<tt><b>buf</b></tt>
+       : string retrieved from the serial port
+       </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<dl><dd>
+<b></b><p>
+     Read characters from the serial port
+     </p>
+<p>
+      The <tt><b>translation</b></tt> setting of 
+      <a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/openserial.htm"><tt><b>openserial</b></tt></a> can come in the way, affecting the number of characters
+      effectively read. If that is the case, omitting the parameter <tt><b>n</b></tt>
+      might be a bad idea, as scilab can hang. This would happen if the input
+      stream contains <tt><b>CR</b></tt> or <tt><b>LF</b></tt> characters which are
+      filtered out: in such cases <a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/serialstatus.htm"><tt><b>serialstatus</b></tt></a> counts them, but
+      <a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/readserial.htm"><tt><b>readserial</b></tt></a> does not see them and keeps wating (if the
+      <tt><b>blocking</b></tt> mode of <a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/openserial.htm"><tt><b>openserial</b></tt></a> was true)
+      until the total number is received.</p>
+</dd></dl>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+   h=openserial(1,"9600,n,8,1")
+   writeserial(h,"#02"+ascii(13))
+   readserial(h)
+   closeserial(h)
+  </pre>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/openserial.htm"><tt><b>openserial</b></tt></a>,&nbsp;&nbsp;<a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/closeserial.htm"><tt><b>closeserial</b></tt></a>,&nbsp;&nbsp;<a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/writeserial.htm"><tt><b>writeserial</b></tt></a>,&nbsp;&nbsp;<a href="../../../../../../usr/lib/scilab-4.1.2/contrib/Serial/man/eng/serialstatus.htm"><tt><b>serialstatus</b></tt></a>,&nbsp;&nbsp;</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd><b>Enrico Segre</b></dd></dl>
+<h3><font color="blue">Bibliography</font></h3>
+<b>TCL manual</b>:
+    <dd><li>
+<b><font color="maroon">read:</font></b>
+       http://www.tcl.tk/man/tcl8.4/TclCmd/read.htm</li></dd>
+</body>
+</html>

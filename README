@@ -1,0 +1,39 @@
+Portable Serial Toolbox for Scilab by Enrico Segre
+==================================================
+
+Drop the whole directory SCI/contrib to have this toolbox available at pulldown in 
+scilab. Otherwise, just exec loader.sce.
+
+Tested successfully so far on linux FC5, winXp, win98.
+
+I'm looking forward for comments, expecially about uncommon platforms supported 
+(Mac is known to be not), performance w.r.o. linking to native serial port drivers
+(e.g. serial.dll at http://www.gds-sw.de/goodies.htm).
+
+The implementation via TCL wrappers is certainly suboptimal, but shouldn't be such
+a penalty, given the low bandwidth and the intrinsic asynchronous mode of serial 
+communication. And mainly, it relieves the developer from supporting many platforms 
+at once. In absence of any other common toolbox for serial port control in scilab,
+I'd like to propose it for inclusion in Scilab 5. Please lobby for it against 
+scilab@inria.fr
+
+12/1/2009:
+==========
+
+v.0.2: corrected version after report of bug 3829  
+(readserial/writeserial confused by strings containing nonprintable ascii characters,
+see http://bugzilla.scilab.org/show_bug.cgi?id=3829 )
+
+Toolbox essentially still geared for scilab 4.x (4.1.2, scicoslab) in the sense that:
+
+-builder.sce and loader.sce make use of xmltohtml(), add_help_chapter(); xml files are 
+ based on the 4.x dtd (IF I would be able to make doc in scilab5 I might even consider to
+ package a new help page set together with the old)
+ 
+-in many points the detour TCL_EvalStr("set answ [....]"); TCL_GetVar("answ")
+ is still implemented (was mandatory prior to request 319, see 
+ http://requestzilla.scilab.org/show_bug.cgi?id=319), it is not required since
+ scilab 4.1.2
+ 
+ However, the toolbox is reported to work with Scilab 5.0.2 final [I suppose, without help
+ pages readable in the help widget, but that's minor; html files provided, anyway]
