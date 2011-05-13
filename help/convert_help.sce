@@ -1,0 +1,5 @@
+xmltodocbook("man/eng/writeserial.xml", "writeserial.xml", "help/en_US/")
+xmltodocbook("man/eng/readserial.xml", "readserial.xml", "help/en_US/")
+xmltodocbook("man/eng/serialstatus.xml", "serialstatus.xml", "help/en_US/")
+xmltodocbook("man/eng/openserial.xml", "openserial.xml", "help/en_US/")
+xmltodocbook("man/eng/closeserial.xml", "closeserial.xml", "help/en_US/")
