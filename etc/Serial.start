@@ -21,8 +21,8 @@ pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
 Seriallib = lib(pathmacros);
 clear pathmacros;
 
-Load and add help chapter
-=============================================================================
+// Load and add help chapter
+// =============================================================================
 if or(getscilabmode() == ["NW";"STD"]) then
 	mprintf("\tLoad help\n");
 	path_addchapter = pathconvert(root_tlbx+"/jar");
