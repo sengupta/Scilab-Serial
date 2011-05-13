@@ -1,0 +1,7 @@
+tests/*
+*.swp
+cleaner.sce
+loader.sce
+lib
+names
+*.bin
