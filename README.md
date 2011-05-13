@@ -23,9 +23,15 @@ at once.
 Release Notes: 
 ==============
 
+14/5/2011: 
+----------
+(First Release by Aditya Sengupta) 
+
+v.0.3: Toolbox is now compatible with Scilab 5.x, along with help files. 
+
 12/1/2009:
 ----------
-(Final Release, by Enrico Segre)
+(Final Release by Enrico Segre)
 
 v.0.2: corrected version after report of [bug
 3829](http://bugzilla.scilab.org/show_bug.cgi?id=3829): readserial/writeserial
