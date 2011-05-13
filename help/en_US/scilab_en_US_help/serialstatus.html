@@ -1,0 +1,124 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+    <title>serialstatus - get status of the serial port</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="readserial.html">readserial</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_9bed59fc5e1870e8a7de5c294e830625.html">The Scilab Serial Communication Toolbox</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="writeserial.html">writeserial</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path"><a href="index.html">The Scilab Serial Communication Toolbox</a> &gt;&gt; <a href="section_9bed59fc5e1870e8a7de5c294e830625.html">The Scilab Serial Communication Toolbox</a> &gt; serialstatus</span>
+
+    <br /><br />
+    <div class="info"></div><div class="refnamediv"><h1 class="refname">serialstatus</h1><p class="refpurpose">get status of the serial port</p></div>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+
+  
+   <div class="refsynopsisdiv"><h3 class="title">Calling Sequence</h3><div class="synopsis"><pre><span class="default">[</span><span class="default">queue</span><span class="default">,</span><span class="default">status</span><span class="default">] = </span><span class="functionid">serialstatus</span><span class="default">(</span><span class="default">h</span><span class="default">)</span></pre></div></div>
+
+  
+   <div class="refsection"><h3 class="title">Parameters</h3>
+  
+      <dl><dt><span class="term">h</span>
+    
+            <dd><p class="para">string, Tcl handle to the serial port</p></dd></dt>
+
+    
+         <dt><span class="term">queue</span>
+    
+            <dd><p class="para">two-element vector: number of bytes in the input and in the output queue</p></dd></dt>
+
+    
+         <dt><span class="term">status</span>
+    
+            <dd><p class="para">string, status of the control lines of the serial port</p></dd></dt></dl></div>
+ 
+  
+   <div class="refsection"><h3 class="title">Description</h3>
+     
+      <ul class="itemizedlist"><li><p class="para">Get some information about the number of characters present in the input
+     and output buffers of the eerial port, and about the status lines (DTS, CTS, 
+     ecc.). Something else could be added?</p>
+     
+            <p class="para">The <code class="literal">translation</code> setting of <code class="literal">openserial</code> can come
+      in the way. If the input stream contains <code class="literal">CR</code> or <code class="literal">LF</code>
+      characters which are filtered out, <a href="openserial.html" class="link">openserial</a> counts them but
+      <a href="readserial.html" class="link">readserial</a> does not see them.</p></li></ul></div>
+
+  
+   <div class="refsection"><h3 class="title">Examples</h3><div class="programlisting"><pre><span class="id">h</span><span class="operator">=</span><span class="id">openserial</span><span class="openclose">(</span><span class="number">1</span><span class="default">,</span><span class="string">&#0034;</span><span class="string">9600,n,8,1</span><span class="string">&#0034;</span><span class="openclose">)</span>
+<span class="id">writeserial</span><span class="openclose">(</span><span class="id">h</span><span class="default">,</span><span class="string">&#0034;</span><span class="string">#02</span><span class="string">&#0034;</span><span class="operator">+</span><a class="command" href="null">ascii</a><span class="openclose">(</span><span class="number">13</span><span class="openclose">)</span><span class="openclose">)</span>
+<span class="openclose">[</span><span class="id">q</span><span class="default">,</span><span class="id">flags</span><span class="openclose">]</span><span class="operator">=</span><span class="id">serialstatus</span><span class="openclose">(</span><span class="id">h</span><span class="openclose">)</span>
+<span class="id">readserial</span><span class="openclose">(</span><span class="id">h</span><span class="openclose">)</span>
+<span class="id">closeserial</span><span class="openclose">(</span><span class="id">h</span><span class="openclose">)</span></pre></div></div>
+
+  
+   <div class="refsection"><h3 class="title">See Also</h3><ul class="itemizedlist"><li class="member"><a href="openserial.html" class="link">openserial</a></li>
+    
+      <li class="member"><a href="closeserial.html" class="link">closeserial</a></li>
+    
+      <li class="member"><a href="writeserial.html" class="link">writeserial</a></li>
+    
+      <li class="member"><a href="readserial.html" class="link">readserial</a></li></ul></div>
+
+  
+
+  <div class="refsection"><h3 class="title">Authors</h3><dl><dt><span class="term">Enrico Segre</span></dt></dl></div>
+
+   <div class="refsection"><h3 class="title">Maintainers</h3><dl><dt><span class="term">Aditya Sengupta &lt;<a href="mailto:apsengupta@iitb.ac.in" class="ulink">apsengupta@iitb.ac.in</a>&gt;</span></dt></dl></div>
+  
+   <div class="refsection"><h3 class="title">Bibliography</h3>
+       
+       <ul class="itemizedlist"><li class="member">fconfigure -queue -status: http://www.tcl.tk/man/tcl8.4/TclCmd/fconfigure.htm</li>
+
+          <li class="member">Project page: <a href="https://github.com/sengupta/Scilab-Serial" class="ulink">https://github.com/sengupta/Scilab-Serial</a></li></ul></div>
+
+
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="readserial.html">readserial</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_9bed59fc5e1870e8a7de5c294e830625.html">The Scilab Serial Communication Toolbox</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="writeserial.html">writeserial</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

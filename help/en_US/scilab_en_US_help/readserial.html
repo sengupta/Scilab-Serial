@@ -1,0 +1,130 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+    <title>readserial - read characters from serial port</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="openserial.html">openserial</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_9bed59fc5e1870e8a7de5c294e830625.html">The Scilab Serial Communication Toolbox</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="serialstatus.html">serialstatus</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path"><a href="index.html">The Scilab Serial Communication Toolbox</a> &gt;&gt; <a href="section_9bed59fc5e1870e8a7de5c294e830625.html">The Scilab Serial Communication Toolbox</a> &gt; readserial</span>
+
+    <br /><br />
+    <div class="info"></div><div class="refnamediv"><h1 class="refname">readserial</h1><p class="refpurpose">read characters from serial port</p></div>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+
+  
+   <div class="refsynopsisdiv"><h3 class="title">Calling Sequence</h3><div class="synopsis"><pre><span class="default">buf</span><span class="default"> = </span><span class="functionid">readserial</span><span class="default">(</span><span class="default">h</span><span class="default"> [,</span><span class="default">n</span><span class="default">])</span></pre></div></div>
+
+  
+   <div class="refsection"><h3 class="title">Parameters</h3>
+  
+      <dl><dt><span class="term">h</span>
+    
+            <dd><p class="para">string, Tcl handle to the serial port</p></dd></dt>
+
+    
+         <dt><span class="term">n</span>
+    
+            <dd><p class="para">number of characters to be read. If omitted, all the characters currently
+       in the input buffer are retrieved (<a href="serialstatus.html" class="link">serialstatus</a> is used).
+       <p class="para"><b>NB</b>: if the input buffer contains less
+       than <code class="literal">n</code> characters and the <code class="literal">blocking</code> 
+       mode of <a href="openserial.html" class="link">openserial</a> is true, <code class="literal">readserial</code> hangs until 
+       <code class="literal">n</code> are received (this can last forever).</p></p></dd></dt>
+
+    
+         <dt><span class="term">buf</span>
+    
+            <dd><p class="para">string retrieved from the serial port</p></dd></dt></dl></div>
+ 
+  
+   <div class="refsection"><h3 class="title">Description</h3>
+     
+      <ul class="itemizedlist"><li><p class="para">Read characters from the serial port</p>
+     
+            <p class="para">The <code class="literal">translation</code> setting of 
+      <a href="openserial.html" class="link">openserial</a> can come in the way, affecting the number of characters
+      effectively read. If that is the case, omitting the parameter <code class="literal">n</code>
+      might be a bad idea, as scilab can hang. This would happen if the input
+      stream contains <code class="literal">CR</code> or <code class="literal">LF</code> characters which are
+      filtered out: in such cases <a href="serialstatus.html" class="link">serialstatus</a> counts them, but
+      <a href="readserial.html" class="link">readserial</a> does not see them and keeps wating (if the
+      <code class="literal">blocking</code> mode of <a href="openserial.html" class="link">openserial</a> was true)
+      until the total number is received.</p></li></ul></div>
+
+  
+   <div class="refsection"><h3 class="title">Examples</h3><div class="programlisting"><pre><span class="id">h</span><span class="operator">=</span><span class="id">openserial</span><span class="openclose">(</span><span class="number">1</span><span class="default">,</span><span class="string">&#0034;</span><span class="string">9600,n,8,1</span><span class="string">&#0034;</span><span class="openclose">)</span>
+<span class="id">writeserial</span><span class="openclose">(</span><span class="id">h</span><span class="default">,</span><span class="string">&#0034;</span><span class="string">#02</span><span class="string">&#0034;</span><span class="operator">+</span><a class="command" href="null">ascii</a><span class="openclose">(</span><span class="number">13</span><span class="openclose">)</span><span class="openclose">)</span>
+<span class="id">readserial</span><span class="openclose">(</span><span class="id">h</span><span class="openclose">)</span>
+<span class="id">closeserial</span><span class="openclose">(</span><span class="id">h</span><span class="openclose">)</span></pre></div></div>
+
+  
+   <div class="refsection"><h3 class="title">See Also</h3><ul class="itemizedlist"><li class="member"><a href="openserial.html" class="link">openserial</a></li>
+    
+      <li class="member"><a href="closeserial.html" class="link">closeserial</a></li>
+    
+      <li class="member"><a href="writeserial.html" class="link">writeserial</a></li>
+    
+      <li class="member"><a href="serialstatus.html" class="link">serialstatus</a></li></ul></div>
+
+  
+   <div class="refsection"><h3 class="title">Authors</h3><dl><dt><span class="term">Enrico Segre</span></dt></dl></div>
+
+   <div class="refsection"><h3 class="title">Maintainers</h3><dl><dt><span class="term">Aditya Sengupta &lt;<a href="mailto:apsengupta@iitb.ac.in" class="ulink">apsengupta@iitb.ac.in</a>&gt;</span></dt></dl></div>
+  
+   <div class="refsection"><h3 class="title">Bibliography</h3>
+       
+       <ul class="itemizedlist"><li class="member">TCL manual: <a href="http://www.tcl.tk/man/tcl8.4/TclCmd/read.htm" class="ulink">http://www.tcl.tk/man/tcl8.4/TclCmd/read.htm</a></li>
+
+          <li class="member">Project page: <a href="https://github.com/sengupta/Scilab-Serial" class="ulink">https://github.com/sengupta/Scilab-Serial</a></li></ul></div>
+
+
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="openserial.html">openserial</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_9bed59fc5e1870e8a7de5c294e830625.html">The Scilab Serial Communication Toolbox</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="serialstatus.html">serialstatus</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,185 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+    <title>openserial - open serial port</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="closeserial.html">closeserial</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_9bed59fc5e1870e8a7de5c294e830625.html">The Scilab Serial Communication Toolbox</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="readserial.html">readserial</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path"><a href="index.html">The Scilab Serial Communication Toolbox</a> &gt;&gt; <a href="section_9bed59fc5e1870e8a7de5c294e830625.html">The Scilab Serial Communication Toolbox</a> &gt; openserial</span>
+
+    <br /><br />
+    <div class="info"></div><div class="refnamediv"><h1 class="refname">openserial</h1><p class="refpurpose">open serial port</p></div>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+
+  
+   <div class="refsynopsisdiv"><h3 class="title">Calling Sequence</h3><div class="synopsis"><pre><span class="default">h</span><span class="default"> = </span><span class="functionid">openserial</span><span class="default">(</span><span class="default">p</span><span class="default">,</span><span class="default">smode</span><span class="default">,</span><span class="default">translation</span><span class="default">,</span><span class="default">handshake</span><span class="default">,</span><span class="default">xchar</span><span class="default">,</span><span class="default">blocking</span><span class="default">,</span><span class="default">timeout</span><span class="default">)</span></pre></div></div>
+
+  
+   <div class="refsection"><h3 class="title">Parameters</h3>
+  
+      <dl><dt><span class="term">p</span>
+    
+            <dd><p class="para">port number, or port device name.
+       
+       Numbers are mapped in the following standard way
+           <table class="informaltable" border="1" cellpadding="" width=""><tr><td align="null"><code class="literal">p</code></td>
+        
+                        <td align="null"><b>MSDOS</b></td>
+        
+                        <td align="null"><b>Unix</b></td></tr>
+      
+                     <tr><td align="null">1</td>
+        
+                        <td align="null">COM1:</td>
+        
+                        <td align="null">/dev/ttyS0</td></tr>
+      
+                     <tr><td align="null">2</td>
+        
+                        <td align="null">COM2:</td>
+        
+                        <td align="null">/dev/ttyS1</td></tr>
+      
+                     <tr><td align="null">...</td>
+        
+                        <td align="null">...</td>
+        
+                        <td align="null">...</td></tr></table>
+       
+       If needed (e.g. on unix systems using different naming conventions), the
+       serial port device can be specified as a string instead.
+       If omitted, default is 1.</p></dd></dt>
+
+    
+         <dt><span class="term">smode</span>
+    
+            <dd><p class="para">string, communication parameters, in the form 
+       <code class="literal">&#0034;baud,parity,data_bits,stop_bits&#0034;</code></p></dd></dt>
+
+    
+         <dt><span class="term">translation</span>
+    
+            <dd><p class="para">string, either <code class="literal">&#0034;auto&#0034;</code>, <code class="literal">&#0034;binary&#0034;</code>,
+       <code class="literal">&#0034;cr&#0034;</code>, <code class="literal">&#0034;crlf&#0034;</code> or <code class="literal">&#0034;lf&#0034;</code>. Default is
+       <code class="literal">&#0034;binary&#0034;</code>.</p></dd></dt>
+
+    
+         <dt><span class="term">handshake</span>
+    
+            <dd><p class="para">string, either <code class="literal">&#0034;none&#0034;</code>, <code class="literal">&#0034;rtscts&#0034;</code>,
+       <code class="literal">&#0034;xonxoff&#0034;</code> or <code class="literal">&#0034;dtrdsr&#0034;</code></p></dd></dt>
+
+    
+         <dt><span class="term">xchar</span>
+    
+            <dd><p class="para">xon and xoff characters</p></dd></dt>
+
+    
+         <dt><span class="term">timeout</span>
+    
+            <dd><p class="para">timeout for reading? msec</p></dd></dt>
+
+    
+         <dt><span class="term">blocking</span>
+    
+            <dd><p class="para">boolean, blocking mode of the serial channel. If <code class="literal">%t</code>,
+       Scilab hangs until all the requested characters are read from or written
+       to the serial port. Default is <code class="literal">%f</code>.</p></dd></dt>
+
+    
+         <dt><span class="term">h</span>
+    
+            <dd><p class="para">string, handle to the serial port file returned by TCL</p></dd></dt></dl></div>
+ 
+  
+   <div class="refsection"><h3 class="title">Description</h3>
+     
+      <ul class="itemizedlist"><li><p class="para">Wrapper to the TCL commands <code class="literal">open</code> and <code class="literal">fconfigure</code>.
+      Parameters can be omitted or given with the named argument convention
+      (e.g., <code class="literal">openserial(1,handshake=&#0034;rtscts&#0034;)</code>)</p></li>
+     
+         <li><p class="para">Serial port communication is supported (as of Tcl 8.4.11) only on Windows
+     and Unix platforms.</p>
+     
+            <p class="para">Apparently, no port locking mechanism is implemented under my linux...</p></li></ul></div>
+
+  
+   <div class="refsection"><h3 class="title">Examples</h3><div class="programlisting"><pre><span class="id">h</span><span class="operator">=</span><span class="id">openserial</span><span class="openclose">(</span><span class="number">1</span><span class="default">,</span><span class="string">&#0034;</span><span class="string">9600,n,8,1</span><span class="string">&#0034;</span><span class="openclose">)</span>
+<span class="id">writeserial</span><span class="openclose">(</span><span class="id">h</span><span class="default">,</span><span class="string">&#0034;</span><span class="string">#02</span><span class="string">&#0034;</span><span class="operator">+</span><a class="command" href="null">ascii</a><span class="openclose">(</span><span class="number">13</span><span class="openclose">)</span><span class="openclose">)</span>
+<a class="command" href="null">xpause</a><span class="openclose">(</span><span class="number">200000</span><span class="openclose">)</span>
+<span class="id">readserial</span><span class="openclose">(</span><span class="id">h</span><span class="openclose">)</span>
+<span class="id">closeserial</span><span class="openclose">(</span><span class="id">h</span><span class="openclose">)</span></pre></div></div>
+
+  
+   <div class="refsection"><h3 class="title">See Also</h3><ul class="itemizedlist"><li class="member"><a href="closeserial.html" class="link">closeserial</a></li>
+    
+      <li class="member"><a href="readserial.html" class="link">readserial</a></li>
+    
+      <li class="member"><a href="writeserial.html" class="link">writeserial</a></li>
+    
+      <li class="member"><a href="serialstatus.html" class="link">serialstatus</a></li></ul></div>
+
+  
+  <div class="refsection"><h3 class="title">Authors</h3><dl><dt><span class="term">Enrico Segre</span></dt></dl></div>
+
+   <div class="refsection"><h3 class="title">Maintainers</h3><dl><dt><span class="term">Aditya Sengupta &lt;<a href="mailto:apsengupta@iitb.ac.in" class="ulink">apsengupta@iitb.ac.in</a>&gt;</span></dt></dl></div>
+  
+   <div class="refsection"><h3 class="title">Bibliography</h3>
+       
+       <ul class="itemizedlist"><li class="member">TCL manual:</li>
+
+       <ul class="itemizedlist"><li class="member">open: http://www.tcl.tk/man/tcl8.4/TclCmd/open.htm</li>
+          <li class="member">fconfigure: http://www.tcl.tk/man/tcl8.4/TclCmd/fconfigure.htm</li></ul>
+          <li class="member">Project page: <a href="https://github.com/sengupta/Scilab-Serial" class="ulink">https://github.com/sengupta/Scilab-Serial</a></li></ul></div>
+
+
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="closeserial.html">closeserial</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_9bed59fc5e1870e8a7de5c294e830625.html">The Scilab Serial Communication Toolbox</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="readserial.html">readserial</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

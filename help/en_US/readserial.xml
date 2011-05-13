@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="readserial"><info><pubdate>3-Aug-2006</pubdate></info><refnamediv><refname>readserial</refname><refpurpose>read characters from serial port</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>buf = readserial(h [,n])</synopsis></refsynopsisdiv>
+
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+
+    
+         <varlistentry>
+    
+            <term>h</term>
+    
+            <listitem>
+       
+               <para>string, Tcl handle to the serial port
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+
+    
+         <varlistentry>
+    
+            <term>n</term>
+    
+            <listitem>
+       
+               <para>number of characters to be read. If omitted, all the characters currently
+       in the input buffer are retrieved (<link linkend="serialstatus">serialstatus</link> is used).
+       <para>
+       
+                     <emphasis role="bold">NB</emphasis>: if the input buffer contains less
+       than <literal>n</literal> characters and the <literal>blocking</literal> 
+       mode of <link linkend="openserial">openserial</link> is true, <literal>readserial</literal> hangs until 
+       <literal>n</literal> are received (this can last forever).
+       </para>
+       
+               </para>
+    
+            </listitem>
+    
+         </varlistentry>
+
+    
+         <varlistentry>
+    
+            <term>buf</term>
+    
+            <listitem>
+       
+               <para>string retrieved from the serial port
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+ 
+  
+   <refsection><title>Description</title>
+     
+      <itemizedlist>
+     
+         <listitem>
+     
+            <para>
+     Read characters from the serial port
+     </para>
+     
+            <para>
+      The <literal>translation</literal> setting of 
+      <link linkend="openserial">openserial</link> can come in the way, affecting the number of characters
+      effectively read. If that is the case, omitting the parameter <literal>n</literal>
+      might be a bad idea, as scilab can hang. This would happen if the input
+      stream contains <literal>CR</literal> or <literal>LF</literal> characters which are
+      filtered out: in such cases <link linkend="serialstatus">serialstatus</link> counts them, but
+      <link linkend="readserial">readserial</link> does not see them and keeps wating (if the
+      <literal>blocking</literal> mode of <link linkend="openserial">openserial</link> was true)
+      until the total number is received.</para>
+     
+         </listitem>
+     
+      </itemizedlist>
+  
+   </refsection>
+
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+   h=openserial(1,"9600,n,8,1")
+   writeserial(h,"#02"+ascii(13))
+   readserial(h)
+   closeserial(h)
+  ]]></programlisting></refsection>
+
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member> 
+         <link linkend="openserial">openserial</link> 
+      </member>
+    
+      <member> 
+         <link linkend="closeserial">closeserial</link> 
+      </member>
+    
+      <member> 
+         <link linkend="writeserial">writeserial</link> 
+      </member>
+    
+      <member> 
+         <link linkend="serialstatus">serialstatus</link> 
+      </member>
+  
+   </simplelist></refsection>
+
+  
+   <refsection><title>Authors</title><variablelist>
+      <varlistentry><term>Enrico Segre</term></varlistentry>
+   </variablelist></refsection>
+
+   <refsection><title>Maintainers</title><variablelist>
+           <varlistentry><term>Aditya Sengupta &lt;<ulink url="mailto:apsengupta@iitb.ac.in">apsengupta@iitb.ac.in</ulink>&gt; </term></varlistentry>
+  
+   </variablelist></refsection>
+  
+   <refsection><title>Bibliography</title>
+       <!-- -->
+       <simplelist>
+          <member>TCL manual: <ulink url="http://www.tcl.tk/man/tcl8.4/TclCmd/read.htm">http://www.tcl.tk/man/tcl8.4/TclCmd/read.htm</ulink></member>
+
+          <member>Project page: <ulink url="https://github.com/sengupta/Scilab-Serial">https://github.com/sengupta/Scilab-Serial</ulink> </member>
+
+      </simplelist>
+      
+  
+   </refsection>
+
+
+</refentry>

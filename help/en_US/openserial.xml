@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="openserial"><info><pubdate>3-Aug-2006</pubdate></info><refnamediv><refname>openserial</refname><refpurpose>open serial port</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>h = openserial(p,smode,translation,handshake,xchar,blocking,timeout)</synopsis></refsynopsisdiv>
+
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+
+    
+         <varlistentry>
+    
+            <term>p</term>
+    
+            <listitem>
+       
+               <para>port number, or port device name.
+       
+       Numbers are mapped in the following standard way
+           <informaltable border="1">
+      
+                     <tr>
+        
+                        <td>
+                           <literal>p</literal>
+                        </td>
+        
+                        <td>
+                           <emphasis role="bold">MSDOS</emphasis>
+                        </td>
+        
+                        <td>
+                           <emphasis role="bold">Unix</emphasis>
+                        </td>
+      
+                     </tr>
+      
+                     <tr>
+        
+                        <td>1</td>
+        
+                        <td>COM1:</td>
+        
+                        <td>/dev/ttyS0</td>
+      
+                     </tr>
+      
+                     <tr>
+        
+                        <td>2</td>
+        
+                        <td>COM2:</td>
+        
+                        <td>/dev/ttyS1</td>
+      
+                     </tr>
+      
+                     <tr>
+        
+                        <td>...</td>
+        
+                        <td>...</td>
+        
+                        <td>...</td>
+       
+                     </tr>
+      
+                  </informaltable>
+       
+       If needed (e.g. on unix systems using different naming conventions), the
+       serial port device can be specified as a string instead.
+       If omitted, default is 1.
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+
+    
+         <varlistentry>
+    
+            <term>smode</term>
+    
+            <listitem>
+       
+               <para>string, communication parameters, in the form 
+       <literal>"baud,parity,data_bits,stop_bits"</literal>
+       
+               </para>
+    
+            </listitem>
+    
+         </varlistentry>
+
+    
+         <varlistentry>
+    
+            <term>translation</term>
+    
+            <listitem>
+       
+               <para>string, either <literal>"auto"</literal>, <literal>"binary"</literal>,
+       <literal>"cr"</literal>, <literal>"crlf"</literal> or <literal>"lf"</literal>. Default is
+       <literal>"binary"</literal>.
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+
+    
+         <varlistentry>
+    
+            <term>handshake</term>
+    
+            <listitem>
+       
+               <para>string, either <literal>"none"</literal>, <literal>"rtscts"</literal>,
+       <literal>"xonxoff"</literal> or <literal>"dtrdsr"</literal>
+       
+               </para>
+    
+            </listitem>
+    
+         </varlistentry>
+
+    
+         <varlistentry>
+    
+            <term>xchar</term>
+    
+            <listitem>
+       
+               <para>xon and xoff characters
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+
+    
+         <varlistentry>
+    
+            <term>timeout</term>
+    
+            <listitem>
+       
+               <para>timeout for reading? msec
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+
+    
+         <varlistentry>
+    
+            <term>blocking</term>
+    
+            <listitem>
+       
+               <para>boolean, blocking mode of the serial channel. If <literal>%t</literal>,
+       Scilab hangs until all the requested characters are read from or written
+       to the serial port. Default is <literal>%f</literal>.
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+
+    
+         <varlistentry>
+    
+            <term>h</term>
+    
+            <listitem>
+       
+               <para>string, handle to the serial port file returned by TCL
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+ 
+  
+   <refsection><title>Description</title>
+     
+      <itemizedlist>
+     
+         <listitem>
+     
+            <para>
+      Wrapper to the TCL commands <literal>open</literal> and <literal>fconfigure</literal>.
+      Parameters can be omitted or given with the named argument convention
+      (e.g., <literal>openserial(1,handshake="rtscts")</literal>)
+     </para>
+     
+         </listitem>
+     
+         <listitem>
+     
+            <para>
+     Serial port communication is supported (as of Tcl 8.4.11) only on Windows
+     and Unix platforms.
+     </para>
+     
+            <para>
+     Apparently, no port locking mechanism is implemented under my linux...
+     </para>
+     
+         </listitem>
+     
+      </itemizedlist>
+  
+   </refsection>
+
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+   h=openserial(1,"9600,n,8,1")
+   writeserial(h,"#02"+ascii(13))
+   xpause(200000)
+   readserial(h)
+   closeserial(h)
+  ]]></programlisting></refsection>
+
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member> 
+         <link linkend="closeserial">closeserial</link> 
+      </member>
+    
+      <member> 
+         <link linkend="readserial">readserial</link> 
+      </member>
+    
+      <member> 
+         <link linkend="writeserial">writeserial</link> 
+      </member>
+    
+      <member> 
+         <link linkend="serialstatus">serialstatus</link> 
+      </member>
+  
+   </simplelist></refsection>
+
+  
+  <refsection><title>Authors</title><variablelist>
+      <varlistentry><term>Enrico Segre</term></varlistentry>
+   </variablelist></refsection>
+
+   <refsection><title>Maintainers</title><variablelist>
+           <varlistentry><term>Aditya Sengupta &lt;<ulink url="mailto:apsengupta@iitb.ac.in">apsengupta@iitb.ac.in</ulink>&gt; </term></varlistentry>
+  
+   </variablelist></refsection>
+  
+   <refsection><title>Bibliography</title>
+       <!-- -->
+       <simplelist>
+          <member>TCL manual:</member>
+
+       <simplelist>
+          <member> open: http://www.tcl.tk/man/tcl8.4/TclCmd/open.htm</member>
+          <member> fconfigure: http://www.tcl.tk/man/tcl8.4/TclCmd/fconfigure.htm</member>
+      </simplelist>
+          <member>Project page: <ulink url="https://github.com/sengupta/Scilab-Serial">https://github.com/sengupta/Scilab-Serial</ulink> </member>
+      </simplelist>
+  </refsection>
+
+</refentry>

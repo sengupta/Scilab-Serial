@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="serialstatus"><info><pubdate>3-Aug-2006</pubdate></info><refnamediv><refname>serialstatus</refname><refpurpose>get status of the serial port</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>[queue,status] = serialstatus(h)</synopsis></refsynopsisdiv>
+
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+
+    
+         <varlistentry>
+    
+            <term>h</term>
+    
+            <listitem>
+       
+               <para>string, Tcl handle to the serial port
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+
+    
+         <varlistentry>
+    
+            <term>queue</term>
+    
+            <listitem>
+       
+               <para>two-element vector: number of bytes in the input and in the output queue
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+
+    
+         <varlistentry>
+    
+            <term>status</term>
+    
+            <listitem>
+       
+               <para>string, status of the control lines of the serial port
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+ 
+  
+   <refsection><title>Description</title>
+     
+      <itemizedlist>
+     
+         <listitem>
+     
+            <para>
+     Get some information about the number of characters present in the input
+     and output buffers of the eerial port, and about the status lines (DTS, CTS, 
+     ecc.). Something else could be added?
+     </para>
+     
+            <para>
+      The <literal>translation</literal> setting of <literal>openserial</literal> can come
+      in the way. If the input stream contains <literal>CR</literal> or <literal>LF</literal>
+      characters which are filtered out, <link linkend="openserial">openserial</link> counts them but
+      <link linkend="readserial">readserial</link> does not see them.</para>
+     
+         </listitem>
+     
+      </itemizedlist>
+  
+   </refsection>
+
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+   h=openserial(1,"9600,n,8,1")
+   writeserial(h,"#02"+ascii(13))
+   [q,flags]=serialstatus(h)
+   readserial(h)
+   closeserial(h)
+  ]]></programlisting></refsection>
+
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member> 
+         <link linkend="openserial">openserial</link> 
+      </member>
+    
+      <member> 
+         <link linkend="closeserial">closeserial</link> 
+      </member>
+    
+      <member> 
+         <link linkend="writeserial">writeserial</link> 
+      </member>
+    
+      <member> 
+         <link linkend="readserial">readserial</link> 
+      </member>
+  
+   </simplelist></refsection>
+
+  
+
+  <refsection><title>Authors</title><variablelist>
+      <varlistentry><term>Enrico Segre</term></varlistentry>
+   </variablelist></refsection>
+
+   <refsection><title>Maintainers</title><variablelist>
+           <varlistentry><term>Aditya Sengupta &lt;<ulink url="mailto:apsengupta@iitb.ac.in">apsengupta@iitb.ac.in</ulink>&gt; </term></varlistentry>
+  
+   </variablelist></refsection>
+  
+   <refsection><title>Bibliography</title>
+       <!-- -->
+       <simplelist>
+          <member>fconfigure -queue -status: http://www.tcl.tk/man/tcl8.4/TclCmd/fconfigure.htm</member>
+
+          <member>Project page: <ulink url="https://github.com/sengupta/Scilab-Serial">https://github.com/sengupta/Scilab-Serial</ulink> </member>
+
+      </simplelist>
+      
+  
+   </refsection>
+
+
+</refentry>

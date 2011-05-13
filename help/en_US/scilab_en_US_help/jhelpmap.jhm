@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN" "http://java.sun.com/products/javahelp/map_1_0.dtd">
+<map version="1.0">
+<mapID target="index" url="index.html"/>
+<mapID target="section_9bed59fc5e1870e8a7de5c294e830625" url="section_9bed59fc5e1870e8a7de5c294e830625.html"/>
+<mapID target="closeserial" url="closeserial.html"/>
+<mapID target="openserial" url="openserial.html"/>
+<mapID target="readserial" url="readserial.html"/>
+<mapID target="serialstatus" url="serialstatus.html"/>
+<mapID target="writeserial" url="writeserial.html"/>
+</map>

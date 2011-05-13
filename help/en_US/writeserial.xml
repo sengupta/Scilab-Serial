@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="writeserial"><info><pubdate>3-Aug-2006</pubdate></info><refnamediv><refname>writeserial</refname><refpurpose>write to the serial port</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>result = writeserial(h,buf)</synopsis></refsynopsisdiv>
+
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+
+    
+         <varlistentry>
+    
+            <term>h</term>
+    
+            <listitem>
+       
+               <para>string, Tcl handle to the serial port
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+
+    
+         <varlistentry>
+    
+            <term>buf</term>
+    
+            <listitem>
+       
+               <para>string to be output 
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+
+    
+         <varlistentry>
+    
+            <term>result</term>
+    
+            <listitem>
+       
+               <para>0 if write is successful, -1 if unsuccessul
+       </para>
+    
+            </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+ 
+  
+   <refsection><title>Description</title>
+     
+      <itemizedlist>
+     
+         <listitem>
+     
+            <para>
+      No end of line character is appended to the string; the user might have to
+      add it if the device being talked to requires it. The Tcl command 
+      <literal>puts -nonewline</literal> 
+      is used. In addition, the translation mode of <link linkend="openserial">openserial</link>
+      can come into way.
+     </para>
+     
+         </listitem>
+     
+      </itemizedlist>
+  
+   </refsection>
+
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+   h=openserial(1,"9600,n,8,1")
+   writeserial(h,"#02"+ascii(13))
+   readserial(h)
+   closeserial(h)
+  ]]></programlisting></refsection>
+
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member> 
+         <link linkend="openserial">openserial</link> 
+      </member>
+    
+      <member> 
+         <link linkend="readserial">readserial</link> 
+      </member>
+    
+      <member> 
+         <link linkend="closeserial">closeserial</link> 
+      </member>
+    
+      <member> 
+         <link linkend="serialstatus">serialstatus</link> 
+      </member>
+  
+   </simplelist></refsection>
+
+  
+   <refsection><title>Authors</title><variablelist>
+      <varlistentry><term>Enrico Segre</term></varlistentry>
+   </variablelist></refsection>
+
+   <refsection><title>Maintainers</title><variablelist>
+           <varlistentry><term>Aditya Sengupta &lt;<ulink url="mailto:apsengupta@iitb.ac.in">apsengupta@iitb.ac.in</ulink>&gt; </term></varlistentry>
+  
+   </variablelist></refsection>
+  
+   <refsection><title>Bibliography</title>
+       <!-- -->
+       <simplelist>
+          <member>TCL manual:</member>
+          <simplelist>
+          <member>puts: http://www.tcl.tk/man/tcl8.4/TclCmd/puts.htm</member>
+          <member>flush: http://www.tcl.tk/man/tcl8.4/TclCmd/flush.htm</member>
+            </simplelist>
+          <member>Project page: <ulink url="https://github.com/sengupta/Scilab-Serial">https://github.com/sengupta/Scilab-Serial</ulink> </member>
+
+      </simplelist>
+      
+  
+   </refsection>
+
+</refentry>
