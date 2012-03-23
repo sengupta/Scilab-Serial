@@ -4,9 +4,9 @@ Serial Communication Toolbox for Scilab
 This toolbox enables the use of Serial Communication in
 [Scilab](http://www.scilab.org/) and [Scicoslab](http://www.scicoslab.org/).
 This is a port of the __Portable Serial Toolbox__ for Scilab originally written
-by [Enrico Segre](http://www.weizmann.ac.il/home/fesegre/) and is being
-released with his kind permission. It is licensed, at his request, under the
-GPLv3. 
+by [Enrico Segre](http://www.weizmann.ac.il/home/fesegre/) and has been ported 
+to Scilab 5.x and released with his kind permission. It is licensed, at his 
+request, under the GPLv3. 
 
 Enrico does not wish to provide support for this
 toolbox anymore. Therefore, for any support related queries or otherwise,
