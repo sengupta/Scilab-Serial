@@ -10,7 +10,10 @@ request, under the GPLv3.
 
 Enrico does not wish to provide support for this
 toolbox anymore. Therefore, for any support related queries or otherwise,
-please raise an issue here or [email me](mailto:apsengupta@iitb.ac.in).
+please raise an issue on the
+[Github project page](https://github.com/sengupta/Scilab-Serial/).
+You can reach me at [this address](mailto:aditya@sengupta.me), but I would
+prefer you raise an issue on Github for problems with the toolbox. 
 
 This toolbox is known to have worked so far on Linux based systems and on
 Windows (up till Windows 7). 
