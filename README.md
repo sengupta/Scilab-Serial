@@ -26,6 +26,10 @@ at once.
 Release Notes: 
 ==============
 
+15/4/2012:
+----------
+v.0.4: Toolbox updated to be compatible with Scilab 5.4 
+
 14/5/2011: 
 ----------
 (First Release by Aditya Sengupta) 
