@@ -3,7 +3,7 @@ function h=openserial(p,smode,translation,handshake,xchar,timeout)
   if ~exists("p","local") then p=1; end
   if type(p)==1 | type(p)==8 then
     if p<=0 then error("port number must be greater than zero"); end
-    if MSDOS then
+    if getos() == "Windows" then
       port="COM"+string(p)+":"
     else
       port="/dev/ttyS"+string(p-1)
