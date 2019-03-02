@@ -1,13 +1,8 @@
 function buf = readserialline(h)
-    queue = 0;
-    while queue == 0
-        TCL_EvalStr("set ttyq [fconfigure " + h + " -queue]");
-        queue = evstr(TCL_GetVar("ttyq"));
-    end
     tmpbuf = emptystr();
     while tmpbuf == emptystr()
-        TCL_EvalStr("binary scan [gets " + h + "] cu* ttybuf");
-        tmpbuf = ascii(evstr(TCL_GetVar("ttybuf")));
+        TCL_EvalStr("gets " + h + " ttybuf");
+        tmpbuf = TCL_GetVar("ttybuf");
     end
     buf = tmpbuf;
 endfunction
