@@ -1,6 +1,6 @@
 function buf = readserialline(h)
     queue = 0;
-    while queue == 0 | queue == lastq
+    while queue == 0
         TCL_EvalStr("set ttyq [fconfigure " + h + " -queue]");
         queue = evstr(TCL_GetVar("ttyq"));
     end
