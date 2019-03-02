@@ -1,0 +1,13 @@
+function buf = readserialline(h)
+    queue = 0;
+    while queue == 0 | queue == lastq
+        TCL_EvalStr("set ttyq [fconfigure " + h + " -queue]");
+        queue = evstr(TCL_GetVar("ttyq"));
+    end
+    tmpbuf = emptystr();
+    while tmpbuf == emptystr()
+        TCL_EvalStr("binary scan [gets " + h + "] cu* ttybuf");
+        tmpbuf = stripblanks(ascii(evstr(TCL_GetVar("ttybuf"))));
+    end
+    buf = tmpbuf;
+endfunction
