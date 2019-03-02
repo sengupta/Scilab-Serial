@@ -7,7 +7,7 @@ function buf = readserialline(h)
     tmpbuf = emptystr();
     while tmpbuf == emptystr()
         TCL_EvalStr("binary scan [gets " + h + "] cu* ttybuf");
-        tmpbuf = stripblanks(ascii(evstr(TCL_GetVar("ttybuf"))));
+        tmpbuf = ascii(evstr(TCL_GetVar("ttybuf")));
     end
     buf = tmpbuf;
 endfunction
