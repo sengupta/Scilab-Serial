@@ -3,7 +3,7 @@ function buf=readserial(h,n)
    if ~exists("n","local") then
      N=serialstatus(h); n=N(1)
    end
-   TCL_EvalStr("binary scan [read "+h+" "+string(n)+"] cu* ttybuf")
-   buf=ascii(evstr(TCL_GetVar("ttybuf")));
+   TCL_EvalStr("set ttybuf [read " + h + " " + string(n) + "]")
+   buf = TCL_GetVar("ttybuf");
 endfunction
 
